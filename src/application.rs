@@ -43,6 +43,14 @@ impl Application {
             .unwrap_or_default()
             .map(|f| f.to_path_buf()));
 
+        for file in active.pop() {
+            if file.is_dir() {
+                active.extend(file.read_dir().unwrap().map(|e| e.unwrap().path()));
+            } else {
+                self.window.files.lock().unwrap().push(file.to_path_buf());
+            }
+        }
+
         while active.len() > 0 {
             for file in active.pop() {
                 if file.is_dir() {
