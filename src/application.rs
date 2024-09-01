@@ -38,8 +38,6 @@ impl Application {
         let mut command = commands::commands();
         let options = command.clone().get_matches();
 
-        // TODO: cleanup and add recursive option
-
         let mut active: Vec<PathBuf> = Vec::new();
         active.extend(options.get_many::<PathBuf>("files")
             .unwrap_or_default()
@@ -56,19 +54,6 @@ impl Application {
                 }
             }
         }
-
-        //for f in (options.get_many::<PathBuf>("files").unwrap_or_default()).collect::<Vec<_>>() {
-        //    if f.is_file() {
-        //        self.window.files.lock().unwrap().push(f.to_path_buf());
-        //    } else if f.is_dir() {
-        //        for f2 in f.read_dir().unwrap() {
-        //            let f2 = f2.unwrap().path();
-        //            if f2.is_file() {
-        //                self.window.files.lock().unwrap().push(f2);
-        //            }
-        //        }
-        //    }
-        //}
 
         if options.get_flag("stdin") {
             if options.get_many::<PathBuf>("files").unwrap_or_default().len() == 0 {
