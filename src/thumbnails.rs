@@ -73,10 +73,12 @@ pub fn to_cache(file: &std::path::Path) {
             .map(|image| {
                 image.resize(width as u32, height as u32, image::imageops::FilterType::Gaussian);
             });
+
+        // TODO: add support for animated frames
     } else {
         let mut reader = ImageReader::new(read);
         reader.set_format(
-            image::ImageFormat::from_extension(extension)
+            image::ImageFormat::from_extension(file.extension().unwrap())
             .expect("Failed to guess image format from extension"));
 
         let image = reader

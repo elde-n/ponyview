@@ -47,7 +47,7 @@ impl Application {
             if file.is_dir() {
                 active.extend(file.read_dir().unwrap().map(|e| e.unwrap().path()));
             } else {
-                self.window.files.lock().unwrap().push(file.to_path_buf());
+                active.push(file);
             }
         }
 
