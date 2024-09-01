@@ -1,0 +1,11 @@
+window.window {
+	background-color: #444444;
+}
+
+box.bar {
+	background-color: #222222;
+}
+
+box.highlighted-thumbnail {
+	border: 2px solid gray;
+}
